@@ -1,15 +1,17 @@
 package steps;
 
+import Pages.LoginAdminPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import utils.CommonMethods;
-
 import java.time.Duration;
 
-public class LoginAdminSteps extends CommonMethods {
+public class LoginAdminSteps {
+
+    private WebDriver driver;
+    private LoginAdminPage loginPage;
 
     @Given("User is on the HRMS application")
     public void user_is_on_the_HRMS_application() {
@@ -17,7 +19,7 @@ public class LoginAdminSteps extends CommonMethods {
         driver.manage().window().maximize();
         driver.get("http://hrm.syntaxtechs.net/humanresources/symfony/web/index.php/auth/login");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        loginPage = new LoginPage(driver); // You need to implement this constructor
+        loginPage = new LoginAdminPage(driver);
     }
 
     @When("user enters username and password")
@@ -28,7 +30,7 @@ public class LoginAdminSteps extends CommonMethods {
 
     @When("User enters valid credentials")
     public void user_enters_valid_credentials() {
-        click(loginPage.loginButton); // Implement click method or use loginPage.loginButton.click();
+        click(loginPage.loginButton);
     }
 
     @Then("User should be redirected to the dashboard")
@@ -36,8 +38,8 @@ public class LoginAdminSteps extends CommonMethods {
         System.out.println("Admin redirected to dashboard");
     }
 
-    // Example click method
     private void click(org.openqa.selenium.WebElement element) {
         element.click();
     }
 }
+

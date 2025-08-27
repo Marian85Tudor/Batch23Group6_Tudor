@@ -19,7 +19,7 @@ public class LoginAdminPage extends CommonMethods {
     @FindBy(id="welcome")
     public WebElement welcomeMessageLoc;
 
-    public LoginPage(){
+    public LoginAdminPage(){
         PageFactory.initElements(driver, this);
     }
 

@@ -6,3 +6,4 @@ Feature: Login functionality
     When user enters username and password
     When User enters valid credentials
     Then User should be redirected to the dashboard
+

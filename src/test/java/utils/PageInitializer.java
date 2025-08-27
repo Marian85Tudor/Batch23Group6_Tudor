@@ -2,7 +2,7 @@ package utils;
 
 public class PageInitializer {
 
-    public static LoginPage loginPage;
+    public static LoginAdminPage loginAdminPage;
     public static DashboardPage dash;
     public static AddEmployeePage addEmployee;
     public static EmployeeListPage employeeListPage;
