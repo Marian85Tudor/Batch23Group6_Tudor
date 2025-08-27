@@ -1,6 +1,5 @@
 package utils;
 
-import io.cucumber.core.options.Constants;
 import io.cucumber.java.eo.Se;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -21,7 +20,7 @@ import java.time.Duration;
 import java.util.Date;
 
 
-public class CommonMethods {
+public class CommonMethods extends PageInitializer{
 
     public static WebDriver driver;
 
@@ -52,7 +51,7 @@ public class CommonMethods {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.get(ConfigReader.read("url"));
 
-        initializePageObject();
+        initializePageObjects();
     }
 
         public void closeBrowser()
