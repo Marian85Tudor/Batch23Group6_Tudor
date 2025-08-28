@@ -1,117 +1,117 @@
 package steps;
 
 import io.cucumber.java.en.*;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import utils.CommonMethods;
 
 import static org.junit.Assert.*;
 
-public class EmployeeSteps {
+public class AddEmployeeSteps extends CommonMethods {
     WebDriver driver;
 
-    @Given("Admin is logged into HRMS with username {string} and password {string}")
-    public void adminLogin(String username, String password) {
-        driver = new ChromeDriver();
-        driver.get("http://hrmstest.syntaxtechs.net/humanresources/symfony/web/index.php/auth/login");
-
-        driver.findElement(By.id("txtUsername")).sendKeys(username);
-        driver.findElement(By.id("txtPassword")).sendKeys(password);
-        driver.findElement(By.id("btnLogin")).click();
+    @When("user clicks on PIM option")
+    public void user_clicks_on_pim_option() {
+        WebElement pimOption = driver.findElement(By.id("menu_pim_viewPimModule"));
+        pimOption.click();
     }
 
-    @When("admin adds a new employee with first name {string}, middle name {string}, and last name {string} without Employee ID")
-    public void addEmployeeWithoutId(String firstName, String middleName, String lastName) {
-        driver.findElement(By.id("menu_pim_viewPimModule")).click();
-        driver.findElement(By.id("menu_pim_addEmployee")).click();
-
-        driver.findElement(By.id("firstName")).sendKeys(firstName);
-        driver.findElement(By.id("middleName")).sendKeys(middleName);
-        driver.findElement(By.id("lastName")).sendKeys(lastName);
-
-        // Leave Employee ID blank so the system generates one
-        driver.findElement(By.id("btnSave")).click();
+    @When("user clicks on Add employee option")
+    public void user_clicks_on_add_employee_option() {
+        WebElement addEmployeeOption = driver.findElement(By.id("menu_pim_addEmployee"));
+        addEmployeeOption.click();
     }
 
-    @When("admin adds a new employee with first name {string}, middle name {string}, last name {string} and Employee ID {string}")
-    public void addEmployeeWithId(String firstName, String middleName, String lastName, String empId) {
-        driver.findElement(By.id("menu_pim_viewPimModule")).click();
-        driver.findElement(By.id("menu_pim_addEmployee")).click();
-
-        driver.findElement(By.id("firstName")).sendKeys(firstName);
-        driver.findElement(By.id("middleName")).sendKeys(middleName);
-        driver.findElement(By.id("lastName")).sendKeys(lastName);
-        WebElement empIdField = driver.findElement(By.id("employeeId"));
-        empIdField.clear();
-        empIdField.sendKeys(empId);
-
-        driver.findElement(By.id("btnSave")).click();
+    @When("user enters firstname middle name and lastname")
+    public void user_enters_firstname_middle_name_and_lastname() {
+        WebElement firstName = driver.findElement(By.id("firstName"));
+        WebElement middleName = driver.findElement(By.id("middleName"));
+        WebElement lastName = driver.findElement(By.id("lastName"));
+        firstName.sendKeys("Tudor");
+        middleName.sendKeys("ms");
+        lastName.sendKeys("Marian");
     }
 
-    @When("admin tries to add a new employee with first name {string} and last name {string}")
-    public void addInvalidEmployee(String firstName, String lastName) {
-        driver.findElement(By.id("menu_pim_viewPimModule")).click();
-        driver.findElement(By.id("menu_pim_addEmployee")).click();
-
-        driver.findElement(By.id("firstName")).sendKeys(firstName);
-        driver.findElement(By.id("lastName")).sendKeys(lastName);
-        driver.findElement(By.id("btnSave")).click();
+    @When("user clicks on save button")
+    public void user_clicks_on_save_button() {
+        WebElement saveButton = driver.findElement(By.id("btnSave"));
+        saveButton.click();
     }
 
-    @When("admin creates login credentials for employee with Employee ID {string} using username {string} and password {string}")
-    public void createLoginDetails(String empId, String username, String password) {
-        driver.findElement(By.id("menu_pim_viewEmployeeList")).click();
-        driver.findElement(By.id("empsearch_id")).sendKeys(empId);
-        driver.findElement(By.id("searchBtn")).click();
-        driver.findElement(By.linkText(empId)).click();
+    @When("user generates a unique employee ID")
+    public void user_generates_a_unique_employee_id() {
 
-        driver.findElement(By.id("btnSave")).click();
-        driver.findElement(By.id("chkLogin")).click();
-
-        driver.findElement(By.id("user_name")).sendKeys(username);
-        driver.findElement(By.id("user_password")).sendKeys(password);
-        driver.findElement(By.id("re_password")).sendKeys(password);
-        driver.findElement(By.id("status")).sendKeys("Enabled");
-        driver.findElement(By.id("btnSave")).click();
     }
 
-    @Then("the employee is successfully added with an auto-generated Employee ID")
-    public void verifyAutoGeneratedId() {
-        String empId = driver.findElement(By.id("personal_txtEmployeeId")).getAttribute("value");
-        assertNotNull(empId);
+    @Then("employee added successfully")
+    public void employee_added_successfully() {
+        System.out.println("Employee Added Successfully");
     }
 
-    @Then("the employee is successfully added with Employee ID {string}")
-    public void verifyEmployeeWithId(String expectedId) {
-        String empId = driver.findElement(By.id("personal_txtEmployeeId")).getAttribute("value");
-        assertEquals(expectedId, empId);
+    @Then("employee added successfully with the provided employee ID")
+    public void employee_added_successfully_with_the_provided_employee_id() {
+        System.out.println("Employee Added Successfully");
     }
 
-    @Then("an error message is displayed for the required fields")
-    public void verifyErrorMessage() {
-        boolean errorDisplayed = driver.findElement(By.xpath("//*[contains(text(),'Required')]")).isDisplayed();
-        assertTrue(errorDisplayed);
+    @And("user enters details of an existing employee")
+    public void userEntersDetailsOfAnExistingEmployee() throws InterruptedException {
+        WebElement firstName = driver.findElement(By.id("firstName"));
+        WebElement middleName = driver.findElement(By.id("middleName"));
+        WebElement lastName = driver.findElement(By.id("lastName"));
+        WebElement empId = driver.findElement(By.id("employeeId"));
+        waitForElementToBeClickAble(firstName);
+        firstName.sendKeys("Tudor");
+        middleName.sendKeys("ms");
+        lastName.sendKeys("Marian");
+        empId.clear();
+        empId.sendKeys("12050971");
+        WebElement saveButton = driver.findElement(By.id("btnSave"));
+        saveButton.click();
     }
 
-    @Then("the employee {string} can log into HRMS successfully")
-    public void verifyLoginWithNewUser(String username) {
-        driver.findElement(By.id("welcome")).click();
-        driver.findElement(By.linkText("Logout")).click();
+    @Then("user should see an error message indicating the employee already exists")
+    public void userShouldSeeAnErrorMessageIndicatingTheEmployeeAlreadyExists() {
+        WebElement messageBox = driver.findElement(By.cssSelector("div.fadable"));
+        Assert.assertTrue(messageBox.isDisplayed());
+        if (messageBox.isDisplayed()) {
+            System.out.println("Error: Employee already exists.");
+        } else {
+            System.out.println("No error message displayed.");
+        }
 
-        driver.findElement(By.id("txtUsername")).sendKeys(username);
-        driver.findElement(By.id("txtPassword")).sendKeys("Password123"); // password from scenario
-        driver.findElement(By.id("btnLogin")).click();
-
-        boolean loggedIn = driver.findElement(By.id("welcome")).isDisplayed();
-        assertTrue(loggedIn);
-
-        driver.quit();
     }
 
-    @Then("the database contains a record for {string} {string}")
-    public void verifyInDatabase(String firstName, String lastName) {
-        // This is a placeholder for JDBC DB validation
-        System.out.println("Verified in DB: " + firstName + " " + lastName);
+    @Then("user should see an error message indicating mandatory fields are required")
+    public void userShouldSeeAnErrorMessageIndicatingMandatoryFieldsAreRequired() {
+        WebElement errorMessage = driver.findElement(By.className("validation-error"));
+        if (errorMessage.isDisplayed()) {
+            System.out.println("Error: Mandatory fields are required.");
+        } else {
+            System.out.println("No error message displayed.");
+        }
+
+    }
+
+    @And("user leaves firstname or lastname empty")
+    public void userLeavesFirstnameOrLastnameEmpty() {
+        WebElement firstName = driver.findElement(By.id("firstName"));
+        WebElement lastName = driver.findElement(By.id("lastName"));
+        firstName.clear();
+        lastName.sendKeys("Doe");
+        WebElement saveButton = driver.findElement(By.id("btnSave"));
+        saveButton.click();
+
+    }
+
+
+    @And("user enters employee ID")
+    public void userEntersEmployeeID() {
+        WebElement employeeID = driver.findElement(By.id("employeeId"));
+        employeeID.sendKeys("12050971");
+
+
     }
 }

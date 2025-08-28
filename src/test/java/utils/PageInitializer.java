@@ -1,8 +1,13 @@
 package utils;
 
+import Pages.AddEmployeePage;
+import Pages.DashboardPage;
+import Pages.LoginAdminPage;
+import Pages.LoginPage;
+
 public class PageInitializer {
 
-    public static LoginAdminPage loginAdminPage;
+    public static LoginAdminPage loginPage;
     public static DashboardPage dash;
     public static AddEmployeePage addEmployee;
     public static EmployeeListPage employeeListPage;
