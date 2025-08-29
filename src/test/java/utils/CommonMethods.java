@@ -29,7 +29,7 @@ public class CommonMethods extends PageInitializer{
         switch (ConfigReader.read("browser")) {
             case "Chrome":
                 ChromeOptions options = new ChromeOptions();
-                options.setHeadless(true);
+                options.setHeadless(false);
                 driver = new ChromeDriver(options);
                 break;
 
@@ -63,7 +63,7 @@ public class CommonMethods extends PageInitializer{
         }
 
 
-        public void sendText(String text, WebElement element)
+        public static void sendText(String text, WebElement element)
         {
             element.clear();
             element.sendKeys(text);
@@ -89,7 +89,7 @@ public class CommonMethods extends PageInitializer{
             sel.selectByIndex(index);
         }
 
-        public WebDriverWait getwait()
+        public static WebDriverWait getwait()
         {
             //WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(Constants.EXPLICIT_WAIT));
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -97,12 +97,12 @@ public class CommonMethods extends PageInitializer{
         }
 
 
-        public void waitForElementToBeClickAble(WebElement element)
+        public static void waitForElementToBeClickAble(WebElement element)
         {
             getwait().until(ExpectedConditions.elementToBeClickable(element));
         }
 
-        public void click(WebElement element)
+        public static void click(WebElement element)
         {
             waitForElementToBeClickAble(element);
             element.click();
@@ -149,5 +149,26 @@ public class CommonMethods extends PageInitializer{
             return sdf.format(date);
         }
 
+
+    /**
+     * Clears text from a web element
+     */
+    public static void clearText(WebElement element) {
+        element.clear();
+    }
+
+    public static void waitForElementToBeVisible(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+
+    public boolean isElementPresent(WebElement element) {
+        try {
+            return element.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
 
 }

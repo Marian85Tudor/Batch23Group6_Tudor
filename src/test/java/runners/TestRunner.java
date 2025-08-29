@@ -9,7 +9,7 @@ import io.cucumber.junit.CucumberOptions;
         features = "src/test/resources/features",
         glue = "steps",
         dryRun = false,
-        tags = "@scenario",
+        tags = " ",
         plugin = {"pretty", "html:target/cucumber-reports.html"}
 )
 public class TestRunner {

@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.CommonMethods;
 
-public class LoginAdminPage extends CommonMethods {
+public class LoginPage extends CommonMethods {
 
     @FindBy(id="txtUsername")
     public WebElement usernameField;
@@ -19,7 +19,7 @@ public class LoginAdminPage extends CommonMethods {
     @FindBy(id="welcome")
     public WebElement welcomeMessageLoc;
 
-    public LoginAdminPage(){
+    public LoginPage(){
         PageFactory.initElements(driver, this);
     }
 
