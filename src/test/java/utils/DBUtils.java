@@ -11,7 +11,10 @@ public class DBUtils {
     public static void main(String[] args) {
 
     }
-    public static List<Map<String,String>> fetch(String query){
+
+
+    public static List<Map<String,String>> fetch(String query) throws SQLException {
+        DriverManager.getConnection("jdbc:mysql://<db-host>:3306/hrms", "dbUser", "dbPassword");
 
             String dbURL=ConfigReader.read("dbURL");
             String userName=ConfigReader.read("dbUserName");
