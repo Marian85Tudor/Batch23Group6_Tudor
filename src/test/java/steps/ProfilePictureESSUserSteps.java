@@ -5,6 +5,8 @@ import org.junit.Assert;
 import utils.CommonMethods;
 import utils.ConfigReader;
 
+import java.nio.file.Paths;
+
 public class ProfilePictureESSUserSteps extends CommonMethods {
 
     @Given("user is logged in with ESS user credentials")
@@ -21,10 +23,13 @@ public class ProfilePictureESSUserSteps extends CommonMethods {
     public void user_click_on_profile_photo_area() {
         click(essUserDashboardPage.profilePhoto);
     }
+
     @When("user select new photo")
     public void user_select_new_photo() {
-        sendText("C:\\Users\\yzade\\OneDrive\\Рабочий стол\\FinalProject\\Batch23Group6\\src\\test\\resources\\testdata\\testPicture.jpg", essUserDashboardPage.chooseFileButton);
+        String path = Paths.get("src/test/resources/testdata/testPicture.jpg").toAbsolutePath().toString();
+        sendText(path, essUserDashboardPage.chooseFileButton);
     }
+
     @When("user click on upload button")
     public void user_click_on_upload_button() {
         click(essUserDashboardPage.uploadButton);
