@@ -1,9 +1,11 @@
 package steps;
 
+import Pages.LoginPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import utils.CommonMethods;
 
@@ -11,9 +13,9 @@ import java.time.Duration;
 
 public class LoginSteps extends CommonMethods {
 
-    // WebDriver driver;
+    //WebDriver driver;
 
-    // LoginPage loginPage = new LoginPage();
+     //LoginPage loginPage = new LoginPage();
 
     @Given("user is navigated to HRMS application")
     public void user_is_navigated_to_hrms_application() {
@@ -27,7 +29,7 @@ public class LoginSteps extends CommonMethods {
     public void user_clicks_on_login_button() {
         //  WebElement loginButton = driver.findElement(By.id("btnLogin"));
         //loginButton.click();
-        click(loginPage.loginButton);
+        click(LoginPage.loginButton);
 
     }
 
@@ -43,11 +45,11 @@ public class LoginSteps extends CommonMethods {
 
     @Then("user is successfully logged in")
     public void user_is_successfully_logged_in() {
-        //validating the existence of the element
+       // validating the existence of the element
         Assert.assertTrue(loginPage.welcomeMessageLoc.isDisplayed());
 
         String value = loginPage.welcomeMessageLoc.getText();
-        //validating the exact message on the element
+       // validating the exact message on the element
         Assert.assertEquals("Welcome Admin", value);
         System.out.println("Test passed");
     }

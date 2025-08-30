@@ -1,5 +1,6 @@
 package steps;
 
+import Pages.SearchEmployeePage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
@@ -25,41 +26,41 @@ public class SearchEmployeeSteps extends CommonMethods {
 
     @When("user enters valid employee id {string}")
     public void user_enters_valid_employee_id(String empId) {
-        sendText(empId, searchEmployeePage.empIdField);
+        sendText(empId, SearchEmployeePage.empIdField);
     }
 
     @When("user clicks on search button")
     public void user_clicks_on_search_button() {
-        click(searchEmployeePage.searchButton);
+        click(SearchEmployeePage.searchButton);
     }
 
     @Then("user should be able to see employee details")
     public void user_should_be_able_to_see_employee_details() {
         Assert.assertTrue("No Records found",
-                isElementPresent(searchEmployeePage.searchResults));
+                isElementPresent(SearchEmployeePage.searchResults));
     }
 
     @When("user enters valid employee name {string}")
     public void user_enters_valid_employee_name(String empName) {
-        sendText(empName, searchEmployeePage.empNameField);
+        sendText(empName, SearchEmployeePage.empNameField);
     }
 
     @Then("user should see the no records found message")
     public void user_should_see_the_no_records_found_message() {
         Assert.assertTrue("No records found message is not displayed",
-                isElementPresent(searchEmployeePage.noRecordsMessage));
-        String actualMessage = searchEmployeePage.noRecordsMessage.getText();
+                isElementPresent(SearchEmployeePage.noRecordsMessage));
+        String actualMessage = SearchEmployeePage.noRecordsMessage.getText();
         Assert.assertEquals("No Records Found", actualMessage);
     }
 
     @When("user enters partial employee name {string}")
     public void user_enters_partial_employee_name(String partialName) {
-        sendText(partialName, searchEmployeePage.empNameField);
+        sendText(partialName, SearchEmployeePage.empNameField);
     }
 
     @When("user enters employee name with different capitalization {string}")
     public void user_enters_employee_name_with_different_capitalization(String name) {
-        sendText(name, searchEmployeePage.empNameField);
+        sendText(name, SearchEmployeePage.empNameField);
     }
 
     @Then("user should see multiple matching employee records")

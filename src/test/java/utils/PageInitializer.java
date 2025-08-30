@@ -1,8 +1,14 @@
 package utils;
 
+import Pages.AddEmployeePage;
+import Pages.DashboardPage;
+import Pages.LoginPage;
+
+import static utils.CommonMethods.driver;
+
 public class PageInitializer {
 
-    public static LoginAdminPage loginAdminPage;
+    public static LoginPage loginPage;
     public static DashboardPage dash;
     public static AddEmployeePage addEmployee;
     public static EmployeeListPage employeeListPage;
@@ -18,19 +24,19 @@ public class PageInitializer {
     public static SkillsPage skills;
 
     public static void initializePageObjects() {
-        loginPage = new LoginPage();
+        loginPage = new LoginPage(driver);
         dash = new DashboardPage();
         addEmployee = new AddEmployeePage();
-        addEmpLicense = new AddLicensePage();
-        dependant = new DependantsPage();
+       addEmpLicense = new AddLicensePage();
+       dependant = new DependantsPage();
         emergencyContact = new EmergencyContactsPage();
         empList = new EmployeeListPage();
         job = new JobPage();
-        language = new LanguagesPage();
-        membership = new MembershipsPage();
-        empList = new EmployeeListPage();
+       language = new LanguagesPage();
+       membership = new MembershipsPage();
+       empList = new EmployeeListPage();
         pDetails = new PersonalDetailsPage();
-        qualification = new QualificationsPage();
+       qualification = new QualificationsPage();
         skills = new SkillsPage();
     }
 }

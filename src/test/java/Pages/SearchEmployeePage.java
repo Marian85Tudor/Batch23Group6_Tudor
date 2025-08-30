@@ -8,22 +8,22 @@ import utils.CommonMethods;
 public class SearchEmployeePage extends CommonMethods {
 
     @FindBy(id="empsearch_id")
-    public WebElement empIdField;
+    public static WebElement empIdField;
 
     @FindBy(id="empsearch_employee_name_empName")
-    public WebElement empNameField;
+    public static WebElement empNameField;
 
     @FindBy(id="searchBtn")
-    public WebElement searchButton;
+    public static WebElement searchButton;
 
     @FindBy(xpath="//table[@id='resultTable']/tbody/tr")
-    public WebElement searchResults;
+    public static WebElement searchResults;
 
     // More flexible locators for "No Records Found" message
     //@FindBy(xpath="//td[contains(text(),'No Records Found')]")
     // Updated locator based on the actual HTML structure
     @FindBy(xpath="//table[@id='resultTable']//td[@colspan='8' and contains(text(),'No Records Found')]")
-    public WebElement noRecordsMessage;
+    public static WebElement noRecordsMessage;
 
     public SearchEmployeePage(){
         PageFactory.initElements(driver,this);
