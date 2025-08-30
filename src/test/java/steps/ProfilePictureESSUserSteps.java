@@ -30,6 +30,7 @@ public class ProfilePictureESSUserSteps extends CommonMethods {
         sendText(path, essUserDashboardPage.chooseFileButton);
     }
 
+
     @When("user click on upload button")
     public void user_click_on_upload_button() {
         click(essUserDashboardPage.uploadButton);
@@ -38,4 +39,6 @@ public class ProfilePictureESSUserSteps extends CommonMethods {
     public void photo_has_been_added_user_able_to_see_delete_button() {
         Assert.assertTrue(essUserDashboardPage.deleteButton.isDisplayed());
     }
+
+//    Commit just for test
 }
