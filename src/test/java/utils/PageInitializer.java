@@ -1,14 +1,11 @@
 package utils;
 
-import Pages.AddEmployeePage;
-import Pages.ESSUserDashboardPage;
-import Pages.LoginPage;
-import Pages.SearchEmployeePage;
+import Pages.*;
 
 public class PageInitializer {
 
       public static LoginPage loginPage;
-//      public static DashboardPage dashboardPage;
+      public static DashboardPage dashboardPage;
         public static AddEmployeePage addEmployeePage;
 //    public static EmployeeListPage employeeListPage;
 //    public static AddLicensePage addEmpLicense;
@@ -26,7 +23,7 @@ public class PageInitializer {
 
     public static void initializePageObjects() {
             loginPage = new LoginPage();
-//          dashboardPage = new DashboardPage();
+            dashboardPage = new DashboardPage();
             addEmployeePage = new AddEmployeePage();
 //          addEmpLicense = new AddLicensePage();
 //         dependant = new DependantsPage();
