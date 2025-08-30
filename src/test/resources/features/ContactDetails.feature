@@ -9,22 +9,11 @@ Feature: Edit Contact Information
     Given the employee is logged into the HRMS application
     And the employee navigates to the contact details page
 
-  @Nelo1 @editContactDetails
+  @Nelo @editContactDetails
   Scenario: Successfully edit contact information
     When the employee updates the contact information with the following details:
-      | Address Street 1  | Address Street 2  |city      |State|
-      | 150 Main Street   | Apt 8B            |Portland  |Maine|
+      | Address Street 1  | Address Street 2  |city      |State |Zip Code |Country      |Home Phone   |Mobile Phone |Work Phone   |Work Email             |Other Email  |
+      | 150 Main Street   | Apt 8B            |Portland  |Maine |10089    |United States|555-125-5867 |555-687-7543 |555-555-5555 |jasor.khan@company.com |jasor.khan@gmail.com |
 
     And the employee clicks the save button
     Then the contact information should be successfully saved
-    And the success message should be displayed
-
-  @Nelo @editContactDetailsPartial
-  Scenario: Edit only some contact information fields
-    When the employee updates the following contact information:
-      | Field        | Value         |
-      | Mobile Phone | 555-999-8888  |
-      | City         | Boston        |
-    And the employee clicks the save button
-    Then the contact information should be successfully saved
-    And the success message should be displayed

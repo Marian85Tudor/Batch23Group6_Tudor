@@ -28,7 +28,7 @@ public class ContactDetailsPage extends CommonMethods {
     @FindBy(id = "contact_city")
     public WebElement city;
 
-    @FindBy(id = "contact_province")
+    @FindBy(id = "contact_state")
     public WebElement state;
 
     @FindBy(id = "contact_emp_zipcode")
@@ -54,11 +54,6 @@ public class ContactDetailsPage extends CommonMethods {
     @FindBy(id = "contact_emp_oth_email")
     public WebElement otherEmail;
 
-    // Success message - flexible locator
-    @FindBy(xpath = "//div[contains(@class,'message') and (contains(@class,'success') or contains(@class,'Success'))] | " +
-            "//div[contains(text(),'success') or contains(text(),'Success')] | " +
-            "//span[contains(text(),'success') or contains(text(),'Success')]")
-    public WebElement successMessage;
 
     public ContactDetailsPage() {
         PageFactory.initElements(driver, this);

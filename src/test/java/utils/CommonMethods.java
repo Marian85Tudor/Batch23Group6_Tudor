@@ -179,4 +179,13 @@ public class CommonMethods extends PageInitializer{
             sendText(value, element);
         }
     }
+
+
+    // For dropdown fields
+    public void updateDropdownIfNotNull(String value, WebElement dropdownElement) {
+        if (value != null && !value.isEmpty()) {
+            Select dropdown = new Select(dropdownElement);
+            dropdown.selectByVisibleText(value);
+        }
+    }
 }
