@@ -16,15 +16,17 @@ public class ESSUserDashboardPage extends CommonMethods {
     @FindBy(xpath = "//input[@id='photofile']")
     public WebElement chooseFileButton;
 
-
     @FindBy(xpath = "//input[@id='btnSave']")
     public WebElement uploadButton;
 
     @FindBy(xpath = "//input[@id='btnDelete']")
     public WebElement deleteButton;
 
+    // Contact Details navigation (from the sidebar)
+    @FindBy(xpath = "//a[contains(@href, 'contactDetails')]")
+    public WebElement contactDetailsSidebarLink;
+
     public ESSUserDashboardPage(){
         PageFactory.initElements(driver,this);
     }
-
 }

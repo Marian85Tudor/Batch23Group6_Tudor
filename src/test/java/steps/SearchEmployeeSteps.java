@@ -3,6 +3,7 @@ package steps;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.junit.Assert;
 import utils.CommonMethods;
@@ -40,8 +41,9 @@ public class SearchEmployeeSteps extends CommonMethods {
     }
 
     @When("user enters valid employee name {string}")
-    public void user_enters_valid_employee_name(String empName) {
-        sendText(empName, searchEmployeePage.empNameField);
+    public void user_enters_valid_employee_name(String empName) throws InterruptedException {
+        Thread.sleep(5000);
+        sendText(empName, searchEmployeePage.empNameField, Keys.ENTER);
     }
 
     @Then("user should see the no records found message")
