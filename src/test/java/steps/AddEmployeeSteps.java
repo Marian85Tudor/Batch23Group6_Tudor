@@ -13,123 +13,58 @@ import java.util.Map;
 
 public class AddEmployeeSteps extends CommonMethods {
 
+    @When("user enters username and password")
+    public void user_enters_username_and_password() {
+        WebElement username = driver.findElement(By.id("txtUsername"));
+       WebElement password = driver.findElement(By.id("txtPassword"));
+       username.sendKeys("admin");
+       password.sendKeys("Hum@nhrm123");
 
 
-  //  AddEmployeePage addEmployeePage = new AddEmployeePage();
+    }
+    @When("user clicks on login button")
+    public void user_clicks_on_login_button() {
+        WebElement loginButton = driver.findElement(By.id("btnLogin"));
+        loginButton.click();
 
+    }
+    @Then("user is successfully logged in")
+    public void user_is_successfully_logged_in() {
+        System.out.println("User is logged in");
+
+
+    }
     @When("user clicks on add employee option")
     public void user_clicks_on_add_employee_option() {
         WebElement addEmployeeButton = driver.findElement(By.id("menu_pim_addEmployee"));
-        click(addEmployeeButton);
-    }
+        addEmployeeButton.click();
 
+    }
     @When("user enters firstname middlename and lastname")
     public void user_enters_firstname_middlename_and_lastname() {
-        //WebElement firstNameLoc = driver.findElement(By.id("firstName"));
-        sendText("Humira", addEmployeePage.firstNameLoc);
-
-       // WebElement middleNameLoc = driver.findElement(By.id("middleName"));
-        sendText("ms", addEmployeePage.middleNameLoc);
-
-       // WebElement lastNameLoc = driver.findElement(By.id("lastName"));
-        sendText("Jan", addEmployeePage.lastNameLoc);
-
+        WebElement firstName = driver.findElement(By.id("firstName"));
+        WebElement middleName = driver.findElement(By.id("middleName"));
+        WebElement lastName = driver.findElement(By.id("lastName"));
+        firstName.sendKeys("Tudor");
+        middleName.sendKeys("ms");
+        lastName.sendKeys("Marian");
     }
-
     @When("user clicks on save button")
     public void user_clicks_on_save_button() {
-      //  WebElement saveButton = driver.findElement(By.id("btnSave"));
-        click(addEmployeePage.saveButton);
+        WebElement saveButton = driver.findElement(By.id("btnSave"));
+        saveButton.click();
 
     }
     @Then("employee is added successfully")
     public void employee_is_added_successfully() {
-        System.out.println("employee added");
-    }
-
-
-    @When("user enters {string} and {string} and {string}")
-    public void user_enters_and_and(String firstname, String middlename, String lastname) {
-        //order of the parameter is imp bcz it will fetch the values in the order from feature
-      //  WebElement firstNameLoc = driver.findElement(By.id("firstName"));
-        sendText(firstname, addEmployeePage.firstNameLoc);
-
-     //   WebElement middleNameLoc = driver.findElement(By.id("middleName"));
-        sendText(middlename, addEmployeePage.middleNameLoc);
-
-       // WebElement lastNameLoc = driver.findElement(By.id("lastName"));
-        sendText(lastname, addEmployeePage.lastNameLoc);
-    }
-
-
-    @When("user enters {string} and {string} and {string} values")
-    public void user_enters_and_and_values(String fn, String mn, String ln) {
-      //  WebElement firstNameLoc = driver.findElement(By.id("firstName"));
-        sendText(fn, addEmployeePage.firstNameLoc);
-
-      //  WebElement middleNameLoc = driver.findElement(By.id("middleName"));
-        sendText(mn, addEmployeePage.middleNameLoc);
-
-      //  WebElement lastNameLoc = driver.findElement(By.id("lastName"));
-        sendText(ln, addEmployeePage.lastNameLoc);
-    }
-
-
-    @When("user enters firstname middlename and lastname values from data table")
-    public void user_enters_firstname_middlename_and_lastname_values_from_data_table
-            (io.cucumber.datatable.DataTable dataTable) {
-        List<Map<String, String>> employeeNames = dataTable.asMaps();
-
-        for (Map<String, String> employee: employeeNames){
-            System.out.println(employee.get("firstName"));
-            System.out.println(employee.get("middleName"));
-            System.out.println(employee.get("lastName"));
-
-           // WebElement firstNameLoc = driver.findElement(By.id("firstName"));
-            sendText(employee.get("firstName"), addEmployeePage.firstNameLoc);
-
-           // WebElement middleNameLoc = driver.findElement(By.id("middleName"));
-            sendText(employee.get("middleName"), addEmployeePage.middleNameLoc);
-
-           // WebElement lastNameLoc = driver.findElement(By.id("lastName"));
-            sendText(employee.get("lastName"), addEmployeePage.lastNameLoc);
-
-           // WebElement saveButton = driver.findElement(By.id("btnSave"));
-            click(addEmployeePage.saveButton);
-
-            WebElement addEmployeeButton = driver.findElement(By.id("menu_pim_addEmployee"));
-            click(addEmployeeButton);
-
-
-        }
+        System.out.println("Employee is added successfully");
 
     }
+    @Then("the employee should be added successfully in the database with id {string}")
+    public void the_employee_should_be_added_successfully_in_the_database_with_id(String string) {
 
-    @When("user enters multiple employees using excel file")
-    public void user_enters_multiple_employees_using_excel_file() throws IOException {
-        List<Map<String, String>> employeeNames = ExcelReader.read();
-
-        for (Map<String, String> employee: employeeNames){
-            System.out.println(employee.get("firstName"));
-            System.out.println(employee.get("middleName"));
-            System.out.println(employee.get("lastName"));
-
-           // WebElement firstNameLoc = driver.findElement(By.id("firstName"));
-            sendText(employee.get("firstName"), addEmployeePage.firstNameLoc);
-
-          //  WebElement middleNameLoc = driver.findElement(By.id("middleName"));
-            sendText(employee.get("middleName"), addEmployeePage.middleNameLoc);
-
-           // WebElement lastNameLoc = driver.findElement(By.id("lastName"));
-            sendText(employee.get("lastName"), addEmployeePage.lastNameLoc);
-
-         //   WebElement saveButton = driver.findElement(By.id("btnSave"));
-            click(addEmployeePage.saveButton);
-
-            WebElement addEmployeeButton = driver.findElement(By.id("menu_pim_addEmployee"));
-            click(addEmployeeButton);
-
-        }
+        
     }
+
 
 }

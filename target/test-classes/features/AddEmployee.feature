@@ -8,12 +8,14 @@ Feature: Add employee scenarios
     When user clicks on PIM option
     When user clicks on add employee option
 
+
+
   @Tudor
   Scenario: Adding one employee
     And user enters firstname middlename and lastname
     And user clicks on save button
     Then employee is added successfully
-
+    And the employee should be added successfully in the database with id "<employeeId>"
 
     @@params
     Scenario: Adding one employee using params

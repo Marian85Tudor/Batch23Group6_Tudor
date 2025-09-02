@@ -22,7 +22,7 @@ public class ContactDetailsSteps extends CommonMethods {
 
     @Given("the employee is logged into the HRMS application")
     public void the_employee_is_logged_into_the_hrms_application() {
-        loginPage = new LoginPage();
+        loginPage = new LoginPage(driver);
         String username = ConfigReader.read("essUserName");
         String password = ConfigReader.read("essPassword");
 

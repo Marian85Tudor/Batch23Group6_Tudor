@@ -2,6 +2,8 @@ package utils;
 
 import Pages.*;
 
+import static utils.CommonMethods.driver;
+
 public class PageInitializer {
 
       public static LoginPage loginPage;
@@ -22,9 +24,9 @@ public class PageInitializer {
 
 
     public static void initializePageObjects() {
-            loginPage = new LoginPage();
+            loginPage = new LoginPage(driver);
             dashboardPage = new DashboardPage();
-            addEmployeePage = new AddEmployeePage();
+            addEmployeePage = new AddEmployeePage(driver);
 //          addEmpLicense = new AddLicensePage();
 //         dependant = new DependantsPage();
 //         emergencyContact = new EmergencyContactsPage();

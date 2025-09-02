@@ -1,5 +1,7 @@
 package Pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -16,7 +18,7 @@ public class AddEmployeePage extends CommonMethods {
     By password = By.id("user_password");
     By confirmPassword = By.id("re_password");
     By statusDropdown = By.id("status");
-    By saveButton = By.id("btnSave");
+    public By saveButton = By.id("btnSave");
 
     public AddEmployeePage(WebDriver driver) {
         this.driver = driver;
@@ -53,7 +55,6 @@ public class AddEmployeePage extends CommonMethods {
     public void clickSave() {
         driver.findElement(saveButton).click();
     }
-
 
 
 }
